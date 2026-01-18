@@ -22,14 +22,12 @@ class AnalizirajOsobu
         $osobe=(new OsobaService())->getAll();
         //broji osobe koje nemaju datum rođenja
         $brojOsobeBezDr=0;
-        //brojač koji broji neuspjele pokušaje prikaza 
-        $brojNeuspjesnihPokusaja=0;
+
 
         foreach ($osobe as $osoba) {
 
             if($brojOsobeBezDr>2){
 
-                $brojNeuspjesnihPokusaja++;
                 $this->ZapisiNeuspjele($request,"Neuspjeli pokušaj prikaza");
                 return response('Broj osoba koje nemaju datum rođenja promašuje dozvoljeni broj.',403);
 
