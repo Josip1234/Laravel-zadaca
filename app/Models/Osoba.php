@@ -10,5 +10,7 @@ class Osoba{
         $this->ime=$ime;
         $this->prezime=$prezime;
         $this->datumRodjenja=$datumRodjenja;
-    }
+        $this->vrstaOsobe=$vrstaOsobe;  
+        
+        }
 }

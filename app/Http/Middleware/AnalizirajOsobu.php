@@ -28,18 +28,14 @@ class AnalizirajOsobu
 
             if($brojOsobeBezDr>2){
 
-                $this->ZapisiNeuspjele($request,"Neuspjeli pokušaj prikaza");
+                $this->ZapisiNeuspjele($request,"Neuspjeli pokušaj prikaza osobe: {$osoba->id} {$osoba->ime} {$osoba->prezime}");
                 return response('Broj osoba koje nemaju datum rođenja promašuje dozvoljeni broj.',403);
 
             }
 
             $datumR=$osoba->datumRodjenja;
 
-            if(empty($datumR) || $datumR=='' || $datumR==null || $datumR!=date("Y-m-d",strtotime($datumR)) || $datumR!=date("d.m.Y",strtotime($datumR)) ){
-
-                $brojOsobeBezDr++;
-
-            }
+        
            
         }
         return $next($request);
