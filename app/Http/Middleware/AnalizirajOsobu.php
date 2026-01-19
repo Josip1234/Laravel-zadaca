@@ -34,7 +34,23 @@ class AnalizirajOsobu
             }
 
             $datumR=$osoba->datumRodjenja;
-
+            //zamjena -,/ ili . ako postoji u datumu
+            $novi_string=str_replace(['-','/','.',':','[',']'],'',$datumR);
+           
+             //ako je string prazan ili ako nije brojčana vrijednost povećaj brojač 
+             if(empty($datumR) || $datumR===''){
+                $brojOsobeBezDr++;
+             }else if(str_contains($datumR[0],'-') || str_contains($datumR[0],'/') || str_contains($datumR[0],'.') || str_contains($datumR[0],':') ||
+              str_contains($datumR[0],'[') || str_contains($datumR[0],']') ){
+                $brojOsobeBezDr++;
+             }else if((int)is_numeric($novi_string)===0){
+                 $brojOsobeBezDr++;
+             }
+             //moglo bi se validirati dani
+             //prvo bi se trebalo provjeriti dali je godina prijestupna
+             //pa mjesece ali to bi malo zakompliciralo stvari pa 
+             //ostavljam samo ovakvu validaciju
+            
         
            
         }
@@ -47,4 +63,5 @@ class AnalizirajOsobu
                 'ip adresa'=>$request->ip()
         ]);
     }
+
 }
